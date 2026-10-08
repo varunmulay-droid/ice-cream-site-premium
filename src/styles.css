@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, serif;
+  --font-sans: "Outfit", "Avenir Next", "Segoe UI", sans-serif;
+  --color-cream: #fff5e1;
+  --color-frost: #fff9f2;
+  --color-strawberry: #ffb7b2;
+  --color-mint: #b5ead7;
+  --color-pistachio: #c7e9b0;
+  --color-cocoa: #2b1b17;
+  --color-berry: #ff3366;
+  --color-gold: #e5a93c;
+  --color-waffle: #d4a373;
+  --color-foam: #ffffff;
+  --radius-card: 1.75rem;
+  --tracking-brand: 0.18em;
+  --shadow-soft: 0 24px 60px rgb(43 27 23 / 0.1);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: var(--color-cream);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-berry);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-strawberry);
+    color: var(--color-cocoa);
+  }
+}
+
+@utility glass {
+  background: color-mix(in srgb, var(--color-frost) 78%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cocoa) 12%, transparent);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+}

@@ -1,0 +1,115 @@
+{
+  "\$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "artisan-ice-cream-ai-designer-coding-instructions",
+  "version": "1.0.0",
+  "role": "Lead WebGL & AI Creative Director / Senior Front-End Architect",
+  "target_audience": "Automated Coding Agents, WebGL Engineers, Front-End Developers",
+  "meta": {
+    "project_type": "High-Converting 3D Interactive Web Experience",
+    "domain": "Artisan Gelato & Gourmet Ice Cream Store",
+    "design_level": "World-Class / Ultra-Viral / \$1,000 USD Production Standards"
+  },
+
+  "core_design_system": {
+    "visual_philosophy": "Tactile Gourmet Softness — Blending organic curved geometric shapes, soft-touch glassmorphism, subsurface light dispersion, and fluid melting physics with modern high-contrast typography.",
+    "color_palettes": {
+      "primary_creamery": {
+        "vanilla_cream": { "hex": "#FFF5E1", "usage": "Primary canvas & light DOM background" },
+        "strawberry_pastel": { "hex": "#FFB7B2", "usage": "Secondary UI cards, subtle glow accents" },
+        "mint_sundae": { "hex": "#B5EAD7", "usage": "Freshness highlights, interactive states" },
+        "pastel_pistachio": { "hex": "#C7E9B0", "usage": "Secondary badges, flavor highlights" },
+        "deep_chocolate": { "hex": "#2B1B17", "usage": "High-contrast primary typography & bold structural elements" }
+      },
+      "vibrant_accent": {
+        "electric_berry": { "hex": "#FF3366", "usage": "Call To Action buttons, high-intensity Bloom target" },
+        "whipped_white": { "hex": "#FFFFFF", "usage": "Card overlays, glass reflections, clean text" },
+        "caramel_gold": { "hex": "#E5A93C", "usage": "Rating stars, premium badge accents" },
+        "waffle_warm_brown": { "hex": "#D4A373", "usage": "Textured ground plane, waffle cone highlights" }
+      }
+    },
+    "typography": {
+      "display_header": {
+        "font_family": "Playful Serif (e.g., Recoleta / Grand Slang / Playfair Display)",
+        "weight": "Bold / ExtraBold",
+        "guideline": "Use large scales (4rem–8rem) with fluid clamp() for dramatic visual impact without overlapping WebGL elements."
+      },
+      "body_and_ui": {
+        "font_family": "Modern Geometric Sans (e.g., Plus Jakarta Sans / Inter)",
+        "weight": "400 Regular / 600 SemiBold",
+        "guideline": "Ensure high legibility over semi-transparent 3D viewports using dynamic drop-shadows and backdrop filters."
+      }
+    }
+  },
+
+  "tech_stack_implementation_rules": {
+    "pexels_media_engine": {
+      "api_key": "wNw2FWSSVyJMjjzuV2s9BRkqdyKJBaK7JycHOUUuNyA78Ksftx06FVzt",
+      "instruction": "Fetch high-resolution dessert imagery and 4K macro video clips via Pexels API. Bind video elements directly into R3F materials using `useVideoTexture` for dynamic backgrounds and 3D mesh projections."
+    },
+    "motion_anything_integration": {
+      "repository": "https://github.com/nexu-io/motion-anything.git",
+      "instruction": "Utilize Motion Anything pipeline patterns to orchestrate automated liquid physics, particle vector fields (floating sprinkles, berries), and smooth spring-based cursor tracking."
+    },
+    "react_three_fiber_and_drei": {
+      "instruction": "Build declaratively structured canvas scenes. Apply `MeshPhysicalMaterial` with soft clearcoat gloss and subsurface light scattering to emulate realistic cream, syrup glazes, ice crystals, and waffle cones. Use `MeshTransmissionMaterial` for glassmorphic refraction."
+    },
+    "post_processing_stack": {
+      "composer": "@react-three/postprocessing EffectComposer",
+      "effects": [
+        {
+          "type": "Bloom",
+          "config": { "intensity": 1.2, "luminanceThreshold": 0.4, "mipmapBlur": true },
+          "purpose": "Soft specular highlights on glossy toppings and syrup glaze."
+        },
+        {
+          "type": "DepthOfField",
+          "config": { "focusDistance": 0.0, "focalLength": 0.025, "bokehScale": 2.0 },
+          "purpose": "Cinematic macro lens depth focusing on 3D gelato scoops."
+        },
+        {
+          "type": "Vignette",
+          "config": { "offset": 0.3, "darkness": 0.4 },
+          "purpose": "Draws focus toward center 3D hero model."
+        }
+      ]
+    },
+    "motion_and_scroll_orchestration": {
+      "smooth_scroll": "Lenis Smooth Scroll (@studio-freight/lenis)",
+      "animation_engine": "GSAP ScrollTrigger + Framer Motion 3D",
+      "instruction": "Bind Lenis scroll offset to GSAP ScrollTrigger to lerp 3D camera zoom, model rotation (360 degrees), and dynamic sprinkle dispersion across sections."
+    }
+  },
+
+  "coding_agent_execution_steps": [
+    {
+      "step": 1,
+      "task": "Set up Next.js / React project structure",
+      "details": "Install React 18, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`, GSAP, Lenis, Framer Motion, and Tailwind CSS."
+    },
+    {
+      "step": 2,
+      "task": "Configure Design System & Tailwind Theme",
+      "details": "Extend Tailwind config with defined creamery and vibrant accent hex palettes and typographic font families."
+    },
+    {
+      "step": 3,
+      "task": "Build R3F Canvas & Lighting Rig",
+      "details": "Create full-screen fixed canvas with soft directional warm light, ambient fill, and contact shadows."
+    },
+    {
+      "step": 4,
+      "task": "Implement Hero 3D Model & Liquid Background Shader",
+      "details": "Load 3D gelato GLB model with subsurface physical materials. Add background mesh plane playing Pexels video texture driven by liquid GLSL distortion shader responding to cursor motion."
+    },
+    {
+      "step": 5,
+      "task": "Build Dynamic Scroll Animations",
+      "details": "Connect Lenis smooth scroll with GSAP ScrollTrigger to orchestrate model transformation, camera movements, and text overlay transitions."
+    },
+    {
+      "step": 6,
+      "task": "Integrate Flavor Showcase Gallery & Post-Processing",
+      "details": "Create 3D curved carousel for flavor scoops using glassmorphic materials and apply Bloom, DepthOfField, and Vignette post-processing stack."
+    }
+  ]
+}

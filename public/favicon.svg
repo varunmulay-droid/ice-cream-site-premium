@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Maison Luce">
+  <rect width="32" height="32" rx="8" fill="#2B1B17"/>
+  <path fill="#FFF5E1" d="M10 17.4h12L16 28.4z"/>
+  <circle cx="16" cy="13.4" r="7.1" fill="#FFB7B2"/>
+  <circle cx="16" cy="11.6" r="2.15" fill="#B5EAD7"/>
+  <circle cx="19.6" cy="14.2" r="1.15" fill="#FF3366"/>
+</svg>

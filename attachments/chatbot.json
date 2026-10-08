@@ -1,0 +1,161 @@
+{
+  "\$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "artisan-gelato-pure-js-nlp-chatbot-plan",
+  "version": "1.0.0",
+  "role": "Central Officer & Conversational Navigation Assistant",
+  "execution_environment": {
+    "runtime": "100% Client-Side Browser / Pure JavaScript (ES6+)",
+    "python_dependency": false,
+    "api_key_required": false,
+    "llm_required": false
+  },
+
+  "nlp_libraries_stack": {
+    "core_nlp_engine": {
+      "library": "compromise.js",
+      "cdn": "https://unpkg.com/compromise",
+      "purpose": "Provides rule-based Natural Language Processing, intent matching, entity extraction (numbers, dates, nouns), and sentence parsing."
+    },
+    "fuzzy_matching_engine": {
+      "library": "Fuse.js",
+      "cdn": "https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js",
+      "purpose": "Handles misspellings, typos in flavor names (e.g., 'pistachio' vs 'pistaachio'), and menu item lookups."
+    },
+    "external_knowledge_engine": {
+      "source": "Wikimedia Action API (JS Fetch)",
+      "endpoint": "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*",
+      "purpose": "Fetches general encyclopedic information on exotic ingredients or ice cream histories dynamically without API keys."
+    }
+  },
+
+  "store_knowledge_base": {
+    "store_info": {
+      "opening_hours": "Monday – Sunday: 11:00 AM – 11:00 PM",
+      "operating_dates": "Open 365 days a year (Special holiday pop-ups updated dynamically in state)",
+      "whatsapp_number": "+1234567890"
+    },
+    "categories": [
+      { "id": "gelato", "name": "Artisan Gelato", "tagline": "Dense, smooth, low-fat milk base" },
+      { "id": "sorbet", "name": "Vegan Sorbets", "tagline": "100% Dairy-free real fruit base" },
+      { "id": "sundae", "name": "Gourmet Sundaes", "tagline": "Loaded scoops with syrups & toppings" }
+    ],
+    "flavors": [
+      { "id": "f_pistachio", "name": "Sicilian Pistachio", "category": "gelato", "price_per_scoop": 4.5, "allergens": ["Nuts", "Dairy"], "in_stock": true },
+      { "id": "f_berry", "name": "Electric Wild Berry", "category": "sorbet", "price_per_scoop": 4.0, "allergens": [], "in_stock": true },
+      { "id": "f_chocolate", "name": "Dark Cocoa Fudge", "category": "gelato", "price_per_scoop": 4.5, "allergens": ["Dairy"], "in_stock": true },
+      { "id": "f_vanilla", "name": "Madagascar Vanilla Bean", "category": "gelato", "price_per_scoop": 4.0, "allergens": ["Dairy"], "in_stock": true }
+    ]
+  },
+
+  "intent_routing_and_handlers": {
+    "intents": [
+      {
+        "intent": "INQUIRE_HOURS_DATES",
+        "keywords": ["time", "timing", "hours", "open", "close", "days", "date", "schedule"],
+        "compromise_match": "(#Date|when|time|open|hours)",
+        "action": "RESPOND_HOURS"
+      },
+      {
+        "intent": "INQUIRE_FLAVORS_MENU",
+        "keywords": ["flavor", "flavours", "menu", "types", "available", "ice cream", "sorbet", "gelato"],
+        "compromise_match": "(flavor|menu|types|available|have|gelato|sorbet)",
+        "action": "RESPOND_MENU_ITEMS"
+      },
+      {
+        "intent": "INQUIRE_INGREDIENT_INFO",
+        "keywords": ["what is", "tell me about", "origin", "wiki", "history"],
+        "compromise_match": "what is #Noun+",
+        "action": "FETCH_WIKIMEDIA_SUMMARY"
+      },
+      {
+        "intent": "ORDER_WHATSAPP",
+        "keywords": ["order", "buy", "whatsapp", "checkout", "purchase", "takeaway"],
+        "compromise_match": "(order|buy|whatsapp|purchase)",
+        "action": "BUILD_WHATSAPP_REDIRECT"
+      }
+    ]
+  },
+
+  "javascript_implementation_code": {
+    "chat_engine_js": "
+      // Pure JS Chatbot Module (Zero LLM / Zero API Key)
+      class GelatoCentralOfficer {
+        constructor(storeData) {
+          this.store = storeData;
+          this.cart = [];
+          this.fuse = new Fuse(this.store.flavors, { keys: ['name', 'category'], threshold: 0.4 });
+        }
+
+        async processMessage(userText) {
+          const doc = nlp(userText);
+          const cleanText = userText.toLowerCase().trim();
+
+          // 1. Check for Order / WhatsApp intent
+          if (doc.has('(order|buy|whatsapp|get|cart)') || cleanText.includes('order')) {
+            return this.handleOrderIntent(doc, cleanText);
+          }
+
+          // 2. Check for Hours / Operating dates
+          if (doc.has('(open|hours|time|dates|today|schedule)')) {
+            return `🍦 We are open ${this.store.store_info.opening_hours}! We operate 365 days a year.`;
+          }
+
+          // 3. Check for Menu & Flavor inquiries
+          if (doc.has('(flavor|flavours|menu|types|have|list)')) {
+            const flavorList = this.store.flavors.map(f => `• ${f.name} ($${f.price_per_scoop})`).join('\\n');
+            return `Here are our current fresh flavors:\\n${flavorList}\\n\\nSay "Order 2 Sicilian Pistachio" to start your WhatsApp order!`;
+          }
+
+          // 4. Fuzzy search specific flavor availability
+          const fuzzyResults = this.fuse.search(cleanText);
+          if (fuzzyResults.length > 0) {
+            const matched = fuzzyResults[0].item;
+            return `Yes! We have **${matched.name}** available ($${matched.price_per_scoop}/scoop). Allergens: ${matched.allergens.length ? matched.allergens.join(', ') : 'None'}. Would you like to order this on WhatsApp?`;
+          }
+
+          // 5. Query Wikimedia JS API for general ingredient facts (e.g., 'what is pistachio')
+          if (cleanText.startsWith('what is') || cleanText.startsWith('tell me about')) {
+            const query = cleanText.replace(/(what is|tell me about)/g, '').trim();
+            const wikiSummary = await this.fetchWikimediaInfo(query);
+            if (wikiSummary) return `💡 **From Wikimedia:** ${wikiSummary}`;
+          }
+
+          // Default fallback
+          return 'I am your Gelato Central Officer! You can ask me about opening hours, available flavors, ingredient details, or tell me what you want to order via WhatsApp!';
+        }
+
+        handleOrderIntent(doc, text) {
+          // Extract numbers using compromise
+          const numberMatch = doc.numbers().get()[0] || 1;
+          const fuzzyResults = this.fuse.search(text);
+
+          if (fuzzyResults.length > 0) {
+            const flavor = fuzzyResults[0].item;
+            const textMsg = encodeURIComponent(`Hello! I would like to order ${numberMatch} scoop(s) of ${flavor.name} from the site.`);
+            const waUrl = `https://wa.me/${this.store.store_info.whatsapp_number}?text=${textMsg}`;
+            
+            return `🛒 **Order Ready!**\\nItems: ${numberMatch}x ${flavor.name}\\nTotal: $${(numberMatch * flavor.price_per_scoop).toFixed(2)}\\n\\n👉 [Click here to complete your order on WhatsApp](${waUrl})`;
+          }
+
+          const defaultMsg = encodeURIComponent("Hello! I would like to place an ice cream order.");
+          return `You can order directly with our team! 👉 [Click here to chat on WhatsApp](https://wa.me/${this.store.store_info.whatsapp_number}?text=${defaultMsg})`;
+        }
+
+        async fetchWikimediaInfo(topic) {
+          try {
+            const res = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles=${encodeURIComponent(topic)}`);
+            const data = await res.json();
+            const pages = data.query.pages;
+            const pageId = Object.keys(pages)[0];
+            if (pageId !== '-1') {
+              return pages[pageId].extract.slice(0, 280) + '...';
+            }
+          } catch (e) {
+            return null;
+          }
+          return null;
+        }
+      }
+    "
+  }
+}

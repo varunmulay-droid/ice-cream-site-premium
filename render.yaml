@@ -1,0 +1,21 @@
+# One-click Render Blueprint for Maison Luce.
+# New → Blueprint → point this repo at the file.
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: maison-luce
+    runtime: node
+    plan: starter
+    region: oregon
+    buildCommand: npm install && RENDER=true npm run build
+    startCommand: node .output/server/index.mjs
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: RENDER
+        value: "true"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PEXELS_API_KEY
+        value: wNw2FWSSVyJMjjzuV2s9BRkqdyKJBaK7JycHOUUuNyA78Ksftx06FVzt

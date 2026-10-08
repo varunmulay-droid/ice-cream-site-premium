@@ -1,0 +1,141 @@
+{
+  "\$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "grok-viral-3d-artisan-gelato-mcp-suite",
+  "version": "4.1.0",
+  "target_market_value": "\$1000 USD High-Converting WebGL Artisan Gelato Experience",
+  "description": "Production-ready master MCP client configuration and creative developer instruction set for Grok to architect, generate, and animate ultra-viral 3D Ice Cream Store websites using React Three Fiber, GLSL melting cream shaders, Pexels API media integration, Motion Anything repository bindings, and GLB model transformations with open-source fallbacks.",
+
+  "mcpServers": {
+    "pexels-media-engine": {
+      "command": "npx",
+      "args": ["-y", "mcp-pexels"],
+      "env": {
+        "PEXELS_API_KEY": "wNw2FWSSVyJMjjzuV2s9BRkqdyKJBaK7JycHOUUuNyA78Ksftx06FVzt"
+      },
+      "description": "Exposes tool endpoints for searching and loading 4K ice cream photography, macro dessert videos, and vibrant background clips into R3F canvas planes using the integrated API key."
+    },
+    "motion-anything-engine": {
+      "command": "npx",
+      "args": ["-y", "mcp-git-runner"],
+      "env": {
+        "GIT_REPOSITORY_URL": "https://github.com/nexu-io/motion-anything.git"
+      },
+      "description": "Integrates the nexu-io Motion Anything pipeline to auto-generate dynamic motion vector fields, automated object animations, and generative particle motions."
+    },
+    "open-source-media-engine": {
+      "command": "npx",
+      "args": ["-y", "@mcp/open-media-assets"],
+      "description": "Provides local & open-source public CDN assets for loading backup gourmet ice cream visuals and looping video elements directly when offline or bypassing external API limits."
+    },
+    "r3f-declarative-builder": {
+      "command": "npx",
+      "args": ["-y", "@mcp/react-three-fiber-server"],
+      "description": "Generates declaratively structured R3F canvas scenes, perspective camera rigs, soft warm lighting, and responsive viewports."
+    },
+    "gltf-to-jsx-pipeline": {
+      "command": "npx",
+      "args": ["-y", "gltfjsx-mcp-server"],
+      "description": "Parses 3D ice cream GLB models (e.g., waffle cones, gelato scoops, sundaes, toppings) into optimized R3F JSX components with subsurface scattering and transmission materials."
+    },
+    "glsl-fluid-melt-synthesizer": {
+      "command": "npx",
+      "args": ["-y", "glsl-shader-mcp"],
+      "description": "Compiles and injects custom liquid swirl/melt vertex and fragment shaders, cream distortion planes, and interactive fluid mouse ripples."
+    },
+    "motion-design-bridge": {
+      "command": "npx",
+      "args": ["-y", "webgl-motion-mcp"],
+      "description": "Manages animated soft-sprinkle HUD overlays, kinetic typography badges, floating ingredient particles, and elastic spring UI interactions."
+    },
+    "gltf-draco-optimizer": {
+      "command": "npx",
+      "args": ["-y", "@gltf-transform/mcp-server"],
+      "description": "Executes local headless Draco compression, mesh simplification, and Basis Universal texture encoding on GLB models to maintain 60FPS performance."
+    }
+  },
+
+  "design_system_and_palettes": {
+    "design_philosophy": "Gourmet Tactile Softness — Organic curved geometry, soft-touch glassmorphism, subsurface light dispersion, and fluid melting physics paired with high-contrast typography.",
+    "color_palettes": {
+      "primary_creamery": {
+        "vanilla_cream": "#FFF5E1",
+        "strawberry_pastel": "#FFB7B2",
+        "mint_sundae": "#B5EAD7",
+        "pastel_pistachio": "#C7E9B0",
+        "deep_chocolate": "#2B1B17"
+      },
+      "vibrant_berry_accent": {
+        "electric_berry": "#FF3366",
+        "whipped_white": "#FFFFFF",
+        "caramel_gold": "#E5A93C",
+        "waffle_warm_brown": "#D4A373"
+      }
+    },
+    "typography": {
+      "display_headers": "Playful Serif / Soft Curved Geometry (e.g., Recoleta / Grand Slang)",
+      "body_and_ui": "Clean Sans-Serif (e.g., Plus Jakarta Sans / Inter)"
+    }
+  },
+
+  "core_tech_stack": {
+    "framework": "React 18 / Next.js App Router or Vite + React",
+    "3d_renderer": "React Three Fiber (@react-three/fiber)",
+    "3d_abstractions": "@react-three/drei",
+    "post_processing": "@react-three/postprocessing",
+    "smooth_scroll": "Lenis Smooth Scroll (@studio-freight/lenis)",
+    "animation_engine": "Motion Anything (https://github.com/nexu-io/motion-anything.git) + GSAP (ScrollTrigger, quickTo) + Framer Motion 3D",
+    "styling": "Tailwind CSS (Theme: Warm Cream / Pastel Pink / Soft Mint / Dark Cocoa)",
+    "texture_engine": "Pexels API Video/Photo Textures + Procedural GLSL Shaders"
+  },
+
+  "site_blueprint_and_flows": {
+    "hero_section": {
+      "canvas_setup": "Full-screen fixed R3F canvas overlaying warm cream DOM background.",
+      "centerpiece_3d_model": "Interactive floating GLB Model (Artisan Gelato Cone with dynamic toppings) configured with MeshPhysicalMaterial, subsurface scattering, and soft clearcoat gloss.",
+      "liquid_background": "Curved WebGL mesh plane rendering a 4K Pexels dessert video texture masked with a procedural swirling cream/berry GLSL liquid shader that drips and ripples dynamically on mouse movement.",
+      "custom_cursor": "Spring-physics soft scoop/sprinkle particle cursor driving `uMouse` and `uVelocity` raycasted uniforms onto the canvas plane."
+    },
+    "feature_scroll_trigger": {
+      "interaction": "As user scrolls via Lenis, Motion Anything motion dynamics and GSAP ScrollTrigger lerp the 3D Gelato cone position, rotating it 360-degrees while dropping dynamic 3D sprinkles and berries.",
+      "hud_overlays": "Floating 3D glassmorphic badges ('100% ORGANIC MILK', 'HAND-CRAFTED DAILY', 'ZERO ARTIFICIAL FLAVORS') with soft drop shadows."
+    },
+    "flavor_3d_showcase": {
+      "gallery_style": "Curved 3D Carousel composed of R3F interactive flavor scoops (e.g., Pistachio, Wild Berry, Dark Chocolate Fudge, Mango Sorbet) wrapped with high-resolution Pexels photo textures.",
+      "glassmorphism": "drei `<MeshTransmissionMaterial />` creating realistic condensed ice glass refraction over floating flavor ingredients."
+    },
+    "call_to_action": {
+      "post_processing_flare": "Triggers warm Bloom (intensity=1.2) and subtle Depth of Field blur when hovering over the 'Order Fresh Tub Now' CTA button."
+    }
+  },
+
+  "post_processing_stack": {
+    "composer": "@react-three/postprocessing EffectComposer",
+    "effects": [
+      {
+        "type": "Bloom",
+        "settings": { "intensity": 1.2, "luminanceThreshold": 0.4, "mipmapBlur": true },
+        "purpose": "Enhances soft highlights on glossy syrup glaze, fresh berries, and whipped cream."
+      },
+      {
+        "type": "DepthOfField",
+        "settings": { "focusDistance": 0.0, "focalLength": 0.025, "bokehScale": 2.0 },
+        "purpose": "Creates cinematic commercial macro camera depth when focusing on key flavor scoops."
+      },
+      {
+        "type": "Vignette",
+        "settings": { "offset": 0.3, "darkness": 0.4 },
+        "purpose": "Softly draws user focus toward the centered 3D hero gelato model."
+      }
+    ]
+  },
+
+  "system_instructions_for_grok": [
+    "You are an elite Creative Technologist and WebGL Lead Developer building a premium, high-converting \$1,000 interactive 3D Artisan Ice Cream & Gelato website.",
+    "ALWAYS structure code using React Three Fiber (R3F), `@react-three/drei`, and `@react-three/postprocessing` in clean JSX syntax.",
+    "Inject the Pexels API key (`wNw2FWSSVyJMjjzuV2s9BRkqdyKJBaK7JycHOUUuNyA78Ksftx06FVzt`) to fetch high-resolution dessert imagery and 4K media textures into `useVideoTexture` and `useTexture` components.",
+    "Integrate animation patterns from `https://github.com/nexu-io/motion-anything.git` for realistic fluid and particle motion orchestration.",
+    "Apply high-end material properties (`MeshPhysicalMaterial`, `MeshTransmissionMaterial`, and subsurface light scatter) to render realistic cream, syrup glazes, ice crystals, and waffle textures.",
+    "Implement soft melting/swirling cursor interactions by raycasting mouse screen coordinates to a WebGL canvas plane running custom fluid displacement shaders.",
+    "Synchronize Lenis smooth scroll with GSAP ScrollTrigger to smoothly control 3D camera zoom, pitch, and flavor rotation across all site sections."
+  ]
+}
