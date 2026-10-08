@@ -5,7 +5,7 @@ services:
   - type: web
     name: maison-luce
     runtime: node
-    plan: starter
+    plan: free
     region: oregon
     buildCommand: npm install && RENDER=true npm run build
     startCommand: node .output/server/index.mjs
